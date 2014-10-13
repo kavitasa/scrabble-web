@@ -8,13 +8,23 @@ class Play < ActiveRecord::Base
   end
 
   def score
-    single_score = word.upcase.chars.inject(0){|sum, letter| sum + letter_scores[letter]}
+    score = mult * word.upcase.chars.inject(0){|sum, letter| sum + letter_scores[letter]}
+    # if multiplier == "triple"
+    #   score = 3 * single_score
+    # elsif multiplier == "double"
+    #   score = 2 * single_score
+    # else
+    #   score = single_score
+    # end
+  end
+
+  def mult
     if multiplier == "triple"
-      score = 3 * single_score
+      3
     elsif multiplier == "double"
-      score = 2 * single_score
+      2
     else
-      score = single_score
+      1
     end
   end
 
