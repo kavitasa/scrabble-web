@@ -4,9 +4,12 @@
 
 <div id="previous_words">
   <h3>Previous Words</h3>
-  <% @plays.each do |play| %>
     <ul id="plays">
-      <li><%= "#{play.word.downcase}, #{play.score}" %></li>
+      <% @plays.each do |play| %>
+        <li>
+          <%= "#{play.word.downcase}, #{play.score()}" %>
+          <%= link_to "Delete", play_path(play.id), method: 'DELETE' %>
+        </li>
+      <% end %>
     </ul>
-  <% end %>
 </div>

@@ -32,7 +32,6 @@ class MakeAPlayTest < ActionDispatch::IntegrationTest
   end
 
   def test_words_with_non_letters_are_rejected
-    skip
     visit '/plays'
     click_link_or_button 'Play New Word'
 
@@ -50,11 +49,15 @@ class MakeAPlayTest < ActionDispatch::IntegrationTest
   end
 
   def test_a_play_is_deleted
-    skip
-    # visit /plays
-    # find the first play
-    # click the delete link
-    # confirm that you're back on /plays
-    # confirm that the word is gone
+    visit '/plays'
+    click_link_or_button 'Play New Word'
+    fill_in 'play[word]', :with => "HELLO"
+    click_link_or_button 'Play!'
+    within('#plays li:first') do
+      assert page.has_content?('hello')
+      click_link_or_button 'Delete'
+    end
+    assert_equal '/plays', current_path
+    refute page.has_content?('hello')
   end
 end

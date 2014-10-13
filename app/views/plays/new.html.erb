@@ -7,5 +7,11 @@
 <%= form_for @play do |f| %>
   <%= f.label :word %>
   <%= f.text_field :word %>
+  <%= f.label :multiplier, :single %>
+  <%= f.radio_button :multiplier, :single %>
+  <%= f.label :multiplier, :double %>
+  <%= f.radio_button :multiplier, :double %>
+  <%= f.label :multiplier, :triple %>
+  <%= f.radio_button :multiplier, :triple %>
   <%= f.submit "Play!" %>
 <% end %>

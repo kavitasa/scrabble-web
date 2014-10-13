@@ -14,7 +14,6 @@ class PlayTest < ActiveSupport::TestCase
   end
 
   def test_an_eight_letter_word_is_too_long
-    skip
     refute Play.new(:word => "pretzels").valid?
   end
 
@@ -24,15 +23,13 @@ class PlayTest < ActiveSupport::TestCase
   end
 
   def test_it_scores_a_double_word_score
-    skip
-    play = Play.new(:word => "hello")
-    assert_equal 16, play.score(:word_multiplier => :double)
+    play = Play.new(:word => "hello", :multiplier => "double")
+    assert_equal 16, play.score#(:word_multiplier => :double)
   end
 
   def test_it_scores_a_triple_word_score
-    skip
-    play = Play.new(:word => "hello")
-    assert_equal 24, play.score(:word_multiplier => :triple)
+    play = Play.new(:word => "hello", :multiplier => "triple")
+    assert_equal 24, play.score#(:word_multiplier => :triple)
   end
 
 end
