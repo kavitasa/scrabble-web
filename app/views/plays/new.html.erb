@@ -1,0 +1,11 @@
+<ul id="errors">
+  <% @play.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+</ul>
+
+<%= form_for @play do |f| %>
+  <%= f.label :word %>
+  <%= f.text_field :word %>
+  <%= f.submit "Play!" %>
+<% end %>
